@@ -1,7 +1,11 @@
 const path = require("path");
+import { resolve } from "path";
 const webpack = require("webpack");
 
 export default {
+  alias: {
+    "~": resolve(__dirname, "./"),
+  },
   // Global page headers: https://go.nuxtjs.dev/config-head
   head: {
     title: "snowflake",

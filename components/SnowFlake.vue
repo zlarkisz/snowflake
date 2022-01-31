@@ -1,5 +1,7 @@
 <template>
-  <div ref="container" id="container" />
+  <div ref="container" id="container">
+    <!-- <img src="~/assets/images/images.jpeg" alt="candy" /> -->
+  </div>
 </template>
 
 <script>
@@ -24,8 +26,6 @@ export default {
       const falling = true;
       const total = 50;
       const container = this.$refs.container;
-      const w = window.innerWidth,
-        h = window.innerHeight;
       const tl = gsap.timeline();
 
       tl.set("#container", { perspective: 500 });
@@ -36,9 +36,11 @@ export default {
 
         tl.set(Div, {
           attr: { class: "snow" },
-          x: this.R(0, w),
+          x: this.R(0, this.w),
           y: this.R(-200, -150),
           z: this.R(-200, 200),
+          width: this.R(3, 30),
+          height: this.R(3, 30),
         });
         container.appendChild(Div);
         this.anim(Div);
@@ -50,14 +52,16 @@ export default {
     anim(el) {
       const tl = gsap.timeline();
 
-      tl.to(el, this.R(6, 15), {
+      tl.to(el, {
+        duration: this.R(6, 15),
         y: this.h + 100,
         ease: "none",
         repeat: -1,
         delay: -15,
       });
 
-      tl.to(el, this.R(4, 8), {
+      tl.to(el, {
+        duration: this.R(4, 8),
         x: "+=100",
         rotationZ: this.R(0, 180),
         repeat: -1,
@@ -65,7 +69,8 @@ export default {
         ease: "sine.inOut",
       });
 
-      tl.to(el, this.R(2, 8), {
+      tl.to(el, {
+        duration: this.R(2, 8),
         rotationX: this.R(0, 360),
         rotationY: this.R(0, 360),
         repeat: -1,
